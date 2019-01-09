@@ -1,3 +1,3 @@
-import TableStore from './TableStore';
+import TableStore from './TableStore'
 
-export default TableStore;
+export default TableStore

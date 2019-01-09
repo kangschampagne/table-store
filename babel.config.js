@@ -1,6 +1,6 @@
 const presets = [
-    ["@babel/preset-env"]
-];
-const plugins = [];
+  ['@babel/preset-env']
+]
+const plugins = []
 
-module.exports = { presets, plugins };
+module.exports = { presets, plugins }
