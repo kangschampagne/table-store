@@ -11,8 +11,10 @@
     "start": "webpack-dev-server --open",
     "build:dev": "webpack --config webpack.config.js --env.development",
     "build:pro": "webpack --config webpack.config.js --env.production",
-    "test": "jest --watchAll",
-    "testCover": "jest --watchAll --collectCoverage"
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "testCover": "jest --watchAll --collectCoverage",
+    "lint": "standard"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
