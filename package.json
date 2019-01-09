@@ -11,9 +11,8 @@
     "start": "webpack-dev-server --open",
     "build:dev": "webpack --config webpack.config.js --env.development",
     "build:pro": "webpack --config webpack.config.js --env.production",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
-    "testCover": "jest --watchAll --collectCoverage",
+    "test": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "test:local": "jest --watchAll --collectCoverage",
     "lint": "standard"
   },
   "devDependencies": {
