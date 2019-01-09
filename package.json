@@ -1,0 +1,29 @@
+{
+  "name": "table-store",
+  "version": "0.0.1",
+  "description": "table store",
+  "main": "index.js",
+  "repository": "https://github.com/kangschampagne/table-store.git",
+  "author": "kangschampange",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build:dev": "webpack --config webpack.config.js --env.development",
+    "build:pro": "webpack --config webpack.config.js --env.production",
+    "test": "jest --watchAll",
+    "testCover": "jest --watchAll --collectCoverage"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
