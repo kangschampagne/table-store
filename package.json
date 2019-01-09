@@ -1,9 +1,12 @@
 {
-  "name": "table-store",
+  "name": "@kangschampagne/table-store",
   "version": "0.0.1",
   "description": "table store",
   "main": "index.js",
-  "repository": "https://github.com/kangschampagne/table-store.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kangschampagne/table-store.git"
+  },
   "author": "kangschampange",
   "license": "MIT",
   "private": true,
@@ -28,5 +31,15 @@
     "webpack": "^4.28.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/kangschampagne/table-store/issues"
+  },
+  "homepage": "https://github.com/kangschampagne/table-store#readme",
+  "keywords": [
+    "table",
+    "store",
+    "sort",
+    "filter"
+  ]
 }
