@@ -1,8 +1,8 @@
 {
   "name": "@kangschampagne/table-store",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "description": "table store",
-  "main": "src/index.js",
+  "main": "dist/tablestore.umd.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kangschampagne/table-store.git"

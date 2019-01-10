@@ -6,7 +6,7 @@ module.exports = function (env = { production: false }, arg) {
     mode: env.production ? 'production' : 'development',
     entry: './src/index.js',
     output: {
-      filename: '[name].bundle.js',
+      filename: 'tablestore.umd.js',
       path: path.resolve(__dirname, 'dist'),
       library: 'TableStore',
       libraryTarget: 'umd',
