@@ -1,10 +1,5 @@
 import * as Utils from './utils'
 
-const MODE = {
-  LOAD_ALL: 0,
-  LOAD_BY_PAGE: 1
-}
-
 const Log = process.env['NODE_ENV'] === 'test' ? {
   warn: _ => {},
   error: _ => {},
@@ -46,8 +41,6 @@ const SORT_MODE = {
 
 class TableStore {
   constructor (params = {}) {
-    this.mode = MODE.LOAD_ALL
-
     this.primaryKey = 'id'
     this.storeType = params.storeType
     this.storeName = params.storeName
@@ -64,11 +57,6 @@ class TableStore {
     this.data = []
     this.fields = []
     this.totalCount = 0
-    this.pageSize = 10
-
-    // state
-    this.loading = false
-    this.currentPage = 0
 
     // fieldFilters
     this.fieldFilters = []
@@ -128,9 +116,6 @@ class TableStore {
         sortKey,
         sortDirection
       })
-
-      // set default current page
-      // this.setCurrentPage(this.currentPage);
     }
   }
 
@@ -319,46 +304,6 @@ class TableStore {
     }
   }
 
-  setCurrentPage (pageNumber) {
-    if (isNaN(Number(pageNumber))) {
-      Log.error('"pageNumber" must be a Number.')
-    }
-    const nextPageNumber = pageNumber - 1
-
-    this.getDataByPageNumber(nextPageNumber)
-  }
-
-  getCurrentPage () {
-    return this.currentPage + 1
-  }
-
-  loadDataByPageNumber (pageNumber) {
-    switch (this.mode) {
-      case MODE.LOAD_ALL:
-        this.load({
-          currentPage: pageNumber
-        })
-        break
-      case MODE.LOAD_BY_PAGE:
-        break
-      default:
-        return null
-    }
-  }
-
-  /**
-     *
-     * @param params
-     *  params = {
-     *      currentPage: 0
-     *  }
-     */
-  load (params) {
-    if (!this.loading) {
-      this.loading = true
-    }
-  }
-
   updateStore (type, value) {
     if (!this.isInitialed) {
       Log.error('Store is not initial!')
@@ -469,7 +414,7 @@ class TableStore {
   }
 
   /**
-     * 计算通过 FieldFilters 的过滤结果
+     * Calculate the filtering results through FieldFilters
      * @param {Array} list
      * @returns {Array} list
      */
@@ -489,7 +434,7 @@ class TableStore {
   }
 
   /**
-     * 计算通过 FilterText 过滤的结果
+     * Calculate the filtering results through FilterText
      * @param {Array} list
      * @returns {Array} list
      */
@@ -514,7 +459,7 @@ class TableStore {
   }
 
   /**
-     * 计算重排序的结果
+     * Calculate the filtering results through Sorting
      * @param {Array} list
      * @returns {Array} list
      */
