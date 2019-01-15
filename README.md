@@ -28,26 +28,26 @@ $ npm install @kangschampagne/table-store
 import TableStore from '@kangschampagne/table-store'
 
 const userGroup = new TableStore({
-	data: [
-        {
-			id: 1,
-			name: 'conner'
-		},
-		{
-			id: 2,
-			name: 'kite'
-		}
-	],
-	fields: [
-        {
-			id: 'id',
-			type: 'number'
-		},
-        {
-			id: 'name',
-			type: 'string'
-		}
-    ]
+  data: [
+    {
+      id: 1,
+      name: 'conner'
+    },
+    {
+      id: 2,
+      name: 'kite'
+    }
+  ],
+  fields: [
+    {
+      id: 'id',
+      type: 'number'
+    },
+    {
+      id: 'name',
+      type: 'string'
+    }
+  ]
 }
 
 // filter
