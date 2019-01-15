@@ -285,5 +285,32 @@ const userGroup = new TableStore({
 #### store.getResult()
 #### store.getFields()
 #### store.getFieldByKey(sortKey)
+#### store.getDefaultSortKey()
 #### store.getAllSortKeyByFields(fields)
 #### store.getDefaultFilteringFields()[Obsolete]
+
+### Action API
+#### store.setFieldFilters(filters)
+#### store.setFilteringFields(fields)
+#### store.setFilterText(filterText)
+#### store.setSorting(sortKey,direciton)
+
+### Other API
+#### store.reloadStore()
+#### store.isValidSortKey(sortKey)
+#### store.setFieldsFromArray()[Obsolete]
+#### store.updateStore()[Obsolete]
+#### store.updateByData()[Obsolete]
+#### store.updateByFields()[Obsolete]
+#### store.updateByFieldFilters()[Obsolete]
+#### store.updateByFilterText()[Obsolete]
+#### store.updateBySorting()[Obsolete]
+#### store.doFieldFilters(listData)[Obsolete]
+#### store.doFilterText(listData)[Obsolete]
+#### store.doSorting(listData)[Obsolete]
+#### store.resetChangeState()[Obsolete]
+
+## TODO
+#### load()
+#### getCurrentPage()
+#### loadDataByPageNumber()
