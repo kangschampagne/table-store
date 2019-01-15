@@ -15,6 +15,8 @@ class UserStore extends TableStore {
 
       data: params.data,
 
+      initialFieldFilters: params.initialFieldFilters,
+
       initialFilteringFields: params.initialFilteringFields,
       initialFilterText: params.initialFilterText,
 
@@ -63,6 +65,25 @@ test('setFunc: set resultData', () => {
 
   userGroup.resultData = []
   expect(userGroup.getResult()).toEqual([])
+})
+
+test('param: initialFieldFilters', () => {
+  const fieldFilters = [
+    {
+      field: 'name',
+      value: 'Conner'
+    },
+    {
+      field: 'formattedAddress',
+      value: 'Beijing, China'
+    }
+  ]
+  let userGroup = new UserStore({
+    data: mockData,
+    fields: mockFields,
+    initialFieldFilters: fieldFilters
+  })
+  expect(userGroup.getResult()).toEqual([mockDataConner])
 })
 
 test('param: fields', () => {
