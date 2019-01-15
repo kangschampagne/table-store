@@ -128,20 +128,79 @@ fields: [{
   
 
 #### initialFieldFilters  
-**type**: `String`  
+**type**: `Array`  
 **defaultValue**: `[]`  
 **description**: Set `fieldFilters` and store will do fields filtering when store initialted.  
+**example**:  
+```javascript
+fieldFilter: [
+    {
+        field: 'name',
+        value: 'Conner'
+    },
+    {
+        field: 'formattedAddress',
+        value: 'Beijing, China'
+    }
+]
+```  
   
   
-#### initialFilteringFields
+#### initialFilteringFields  
+**type**: `Array{String}`  
+**defaultValue**: `[]`  
+**description**: Set `filteringFields` for text filter (`filterText`). if `filteringFields` is empty array, `store` will filter through all `fields`.  
+**example**:  
+```javascript
+const userGroup = new UserStore({
+    // ...
+    initialFilteringFields: ['id', 'name'],
+    initialFilterText: '1'
+})
+// It will filter items by text '1' in 'id' & 'name' field when store initialted.
+```  
+  
 
-#### initialFilterText
+#### initialFilterText  
+**type**: `String`  
+**defaultValue**: `''`  
+**description**: Set filter text, Cooperate with `filteringFields`.  
+**example**:  
+```javascript
+const userGroup = new UserStore({
+    // ...
+    // initialFilteringFields: [],
+    initialFilterText: '1'
+})
+// This will filter items by text '1' in all fields when store initialted.
+```  
+  
 
-#### initialSortKey
+#### initialSortKey  
+**type**: `String`  
+**defaultValue**: `primaryKey` or `first field's id`  
+**description**: Set sorting key. Store items will sort by `sortingKey`  and default 'ASC' direction when store initiated.  
+**example**:  
+```javascript
+const userGroup = new UserStore({
+    initialSortKey: 'name'
+})
+```  
+  
 
-#### initialSortDirection
-
-
+#### initialSortDirection  
+**type**: `String`  
+**defaultValue**: `ASC` or `DESC`  
+**description**: Set sorting direction. Store items will sort by `sortingKey` and `sortDirection` when store initiated.  
+**example**:  
+```javascript
+const userGroup = new UserStore({
+    // initialSortKey: 'name',
+    initialSortDirection: 'DESC'
+})
+```  
+  
+  
 ### Set Function
 - setData
 ```javascript
