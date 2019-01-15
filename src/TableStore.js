@@ -414,7 +414,7 @@ class TableStore {
   }
 
   /**
-     * 计算通过 FieldFilters 的过滤结果
+     * Calculate the filtering results through FieldFilters
      * @param {Array} list
      * @returns {Array} list
      */
@@ -434,7 +434,7 @@ class TableStore {
   }
 
   /**
-     * 计算通过 FilterText 过滤的结果
+     * Calculate the filtering results through FilterText
      * @param {Array} list
      * @returns {Array} list
      */
@@ -459,7 +459,7 @@ class TableStore {
   }
 
   /**
-     * 计算重排序的结果
+     * Calculate the filtering results through Sorting
      * @param {Array} list
      * @returns {Array} list
      */
