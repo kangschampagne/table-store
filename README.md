@@ -71,8 +71,54 @@ userGroup.getResult()
 console.log(userGroup.resultData)
 ```
 
-## API
-### Initial
+
+## API Contents
+
+<details>
+<summary>Initial Params</summary>
+
+* [`storeType`](#storeType)
+* [`storeName`](#storeName)
+* [`data`](#data)
+* [`fields`](#fields)
+* [`primaryKey`](#primaryKey)
+* [`initialFieldFilters`](#initialFieldFilters)
+* [`initialFilteringFields`](#initialFilteringFields)
+* [`initialFilterText`](#initialFilterText)
+* [`initialSortKey`](#initialSortKey)
+* [`initialSortDirection`](#initialSortDirection)
+
+</details>
+
+<details>
+<summary>Set Function API</summary>
+
+* [`store.initial(params)`](#store.initial(params))
+* [`store.setData(datas)`](#store.setData(datas))
+* [`store.setField(fields)`](#store.setField(fields))
+* [`store.setInitialFieldFilters(filters)`](#store.setInitialFieldFilters(filters))
+* [`store.setInitialFilterText(text)`](#store.setInitialFilterText(text))
+* [`store.setInitialFilteringFields(fields)`](#store.setInitialFilteringFields(fields))
+* [`store.setInitialSorting(sortKey, direction)`](#store.setInitialSorting(sortKey,direction)))
+
+</details>
+
+<details>
+<summary>Get Function API</summary>
+
+* [`store.getData()`](#store.getData())
+* [`store.getResult()`](#store.getResult())
+* [`store.getFields()`](#store.getFields())
+* [`store.getFieldByKey(sortKey)`](#store.getFieldByKey(sortKey))
+* [`store.getAllSortKeyByFields(fields)`](#store.getAllSortKeyByFields(fields))
+* [`store.getDefaultFilteringFields()[Obsolete]`](#store.getDefaultFilteringFields()[Obsolete])
+
+</details>
+
+
+## API Detail
+
+### Initial Params
 ```javascript
 const userGroup = new TableStore({
     storeType: 'demo',
@@ -93,123 +139,151 @@ const userGroup = new TableStore({
 ```
 
 #### storeType  
-**type**: `String`
-**description**: Set current table store type, for example 'userStore'.  
+- type: `String`  
+- description: Set current table store type, for example 'userStore'.  
   
 
 #### storeName  
-**type**: `String`  
-**description**: Set current table store name. for example 'userList'.
+- type: `String`  
+- description: Set current table store name. for example 'userList'.
   
 
 #### data  
-**type**: `Array`  
-**description**: Source data, will not be modified  
+- type: `Array`  
+- description: Source data, will not be modified  
   
   
 #### fields  
-**type**: `Array`  
-**required**: `true`  
-**description**: table header  
-**example**:  
-```javascript
-fields: [{
-    id: 'name',
-    type: 'string',
-    isPrimaryKey: false
-}]
-```  
+- type: `Array`  
+- required: `true`  
+- description: table header  
+-   <details>
+    <summary>Examples</summary>
+
+    ```js
+    fields: [{
+        id: 'name',
+        type: 'string',
+        isPrimaryKey: false
+    }]
+    ```  
+
+    </details>
   
 
 #### primaryKey  
-**type**: `String`  
-**defaultValue**: `id`  
-**description**: Set primary key to sorting when store initiated.  
+- type: `String`  
+- defaultValue: `id`  
+- description: Set primary key to sorting when store initiated.  
   
 
 #### initialFieldFilters  
-**type**: `Array`  
-**defaultValue**: `[]`  
-**description**: Set `fieldFilters` and store will do fields filtering when store initialted.  
-**example**:  
-```javascript
-fieldFilter: [
-    {
-        field: 'name',
-        value: 'Conner'
-    },
-    {
-        field: 'formattedAddress',
-        value: 'Beijing, China'
-    }
-]
-```  
+- type: `Array`  
+- defaultValue: `[]`  
+- description: Set `fieldFilters` and store will do fields filtering when store initialted.  
+-   <details>
+    <summary>Examples</summary>
+
+    ```js
+    fieldFilter: [
+        {
+            field: 'name',
+            value: 'Conner'
+        },
+        {
+            field: 'formattedAddress',
+            value: 'Beijing, China'
+        }
+    ]
+    ```  
+
+    </details>
   
   
 #### initialFilteringFields  
-**type**: `Array{String}`  
-**defaultValue**: `[]`  
-**description**: Set `filteringFields` for text filter (`filterText`). if `filteringFields` is empty array, `store` will filter through all `fields`.  
-**example**:  
-```javascript
-const userGroup = new UserStore({
-    // ...
-    initialFilteringFields: ['id', 'name'],
-    initialFilterText: '1'
-})
-// It will filter items by text '1' in 'id' & 'name' field when store initialted.
-```  
+- type: `Array{String}`  
+- defaultValue: `[]`  
+- description: Set `filteringFields` for text filter (`filterText`). if `filteringFields` is empty array, `store` will filter through all `fields`.  
+-   <details>
+    <summary>Examples</summary>
+
+    ```js
+    const userGroup = new UserStore({
+        // ...
+        initialFilteringFields: ['id', 'name'],
+        initialFilterText: '1'
+    })
+    // It will filter items by text '1' in 'id' & 'name' field when store initialted.
+    ```  
+
+    </details>
   
 
 #### initialFilterText  
-**type**: `String`  
-**defaultValue**: `''`  
-**description**: Set filter text, Cooperate with `filteringFields`.  
-**example**:  
-```javascript
-const userGroup = new UserStore({
-    // ...
-    // initialFilteringFields: [],
-    initialFilterText: '1'
-})
-// This will filter items by text '1' in all fields when store initialted.
-```  
+- type: `String`  
+- defaultValue: `''`  
+- description: Set filter text, Cooperate with `filteringFields`.  
+-   <details>
+    <summary>Examples</summary>
+
+    ```js
+    const userGroup = new UserStore({
+        // ...
+        // initialFilteringFields: [],
+        initialFilterText: '1'
+    })
+    // This will filter items by text '1' in all fields when store initialted.
+    ```  
+
+    </details>
   
 
 #### initialSortKey  
-**type**: `String`  
-**defaultValue**: `primaryKey` or `first field's id`  
-**description**: Set sorting key. Store items will sort by `sortingKey`  and default 'ASC' direction when store initiated.  
-**example**:  
-```javascript
-const userGroup = new UserStore({
-    initialSortKey: 'name'
-})
-```  
-  
+- type: `String`  
+- defaultValue: `primaryKey` or `first field's id`  
+- description: Set sorting key. Store items will sort by `sortingKey`  and default 'ASC' direction when store initiated.  
+-   <details>
+    <summary>Examples</summary>
+
+    ```js
+    const userGroup = new UserStore({
+        initialSortKey: 'name'
+    })
+    ```
+
+    </details> 
+
 
 #### initialSortDirection  
-**type**: `String`  
-**defaultValue**: `ASC` or `DESC`  
-**description**: Set sorting direction. Store items will sort by `sortingKey` and `sortDirection` when store initiated.  
-**example**:  
-```javascript
-const userGroup = new UserStore({
-    // initialSortKey: 'name',
-    initialSortDirection: 'DESC'
-})
-```  
-  
-  
-### Set Function
-- setData
-```javascript
-const userGroup = new TableStore({
-    data: data
-})
-// or
-const userGroup = new TableStore({})
-userGroup.setData()
-```
+- type: `String`  
+- defaultValue: `ASC` or `DESC`  
+- description: Set sorting direction. Store items will sort by `sortingKey` and `sortDirection` when store initiated.  
+-   <details>
+    <summary>Examples</summary>
 
-- setField
+    ```js
+    const userGroup = new UserStore({
+        // initialSortKey: 'name',
+        initialSortDirection: 'DESC'
+    })
+    ```  
+
+    </details> 
+  
+    
+### Set Function API
+#### store.initial(params)
+#### store.setData(datas)
+#### store.setField(fields)
+#### store.setInitialFieldFilters(filters)
+#### store.setInitialFilterText(text)
+#### store.setInitialFilteringFields(fields)
+#### store.setInitialSorting(sortKey,direction)
+
+### Get Function API
+#### store.getData()
+#### store.getResult()
+#### store.getFields()
+#### store.getFieldByKey(sortKey)
+#### store.getAllSortKeyByFields(fields)
+#### store.getDefaultFilteringFields()[Obsolete]
