@@ -79,13 +79,7 @@ const userGroup = new TableStore({
     storeName: 'demoStore',
 
     data: [],
-
     fields: [],
-
-    /**
-     * set primary key
-     * @param {string} primaryKey
-     */ 
     primaryKey: 'id',
 
     initialFieldFilters: [],
@@ -98,24 +92,25 @@ const userGroup = new TableStore({
 })
 ```
 
-#### storeType
-**type**: String
-set 
+#### storeType  
+**type**: `String`
+**description**: Set current table store type, for example 'userStore'.  
   
+
+#### storeName  
+**type**: `String`  
+**description**: Set current table store name. for example 'userList'.
   
-#### storeName
-**type**: String  
-  
-  
+
 #### data  
-**type**: Array
-**description**: source data, will not be modified
+**type**: `Array`  
+**description**: Source data, will not be modified  
   
   
-#### fields
-**type**: Array
-**required**: true
-**description**: table header
+#### fields  
+**type**: `Array`  
+**required**: `true`  
+**description**: table header  
 **example**:  
 ```javascript
 fields: [{
@@ -123,13 +118,21 @@ fields: [{
     type: 'string',
     isPrimaryKey: false
 }]
-```
+```  
+  
+
+#### primaryKey  
+**type**: `String`  
+**defaultValue**: `id`  
+**description**: Set primary key to sorting when store initiated.  
+  
+
+#### initialFieldFilters  
+**type**: `String`  
+**defaultValue**: `[]`  
+**description**: Set `fieldFilters` and store will do fields filtering when store initialted.  
   
   
-#### primaryKey
-
-#### initialFieldFilters
-
 #### initialFilteringFields
 
 #### initialFilterText
