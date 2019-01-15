@@ -121,6 +121,15 @@ test('param: initialSortKey', () => {
   expect(userGroup.getResult()).toEqual(mockDataSortDESCById)
 })
 
+test('param: initialSortDirection', () => {
+  const userGroup = new UserStore({
+    data: mockData,
+    fields: mockFields,
+    initialSortDirection: 'DESC'
+  })
+  expect(userGroup.getResult()).toEqual(mockDataSortDESCById)
+})
+
 test('param: sortKey set', () => {
   const userGroup = new UserStore()
 
