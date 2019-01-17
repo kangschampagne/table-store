@@ -173,8 +173,8 @@ const userGroup = new TableStore({
 
 #### primaryKey  
 - type: `String`  
-- defaultValue: `id`  
-- description: Set primary key to sorting when store initiated.  
+- defaultValue: `''` or `fields[0].id` or `id`  
+- description: Set primary key to sorting when store initiated. Suggess use 'initialSortKey' to replace it.  
   
 
 #### initialFieldFilters  
@@ -286,8 +286,7 @@ const userGroup = new TableStore({
 #### store.getFields()
 #### store.getFieldByKey(sortKey)
 #### store.getDefaultSortKey()
-#### store.getAllSortKeyByFields(fields)
-#### store.getDefaultFilteringFields()[Obsolete]
+#### store.getAllSortKey()
 
 ### Action API
 #### store.setFieldFilters(filters)
@@ -298,7 +297,6 @@ const userGroup = new TableStore({
 ### Other API
 #### store.reloadStore()
 #### store.isValidSortKey(sortKey)
-#### store.setFieldsFromArray()[Obsolete]
 #### store.updateStore()[Obsolete]
 #### store.updateByData()[Obsolete]
 #### store.updateByFields()[Obsolete]
@@ -310,7 +308,14 @@ const userGroup = new TableStore({
 #### store.doSorting(listData)[Obsolete]
 #### store.resetChangeState()[Obsolete]
 
+### Obsoleted API
+#### store.getAllSortKeyByFields(fields)[Obsolete]
+#### store.getDefaultFilteringFields()[Obsolete]
+#### store.setFieldsFromArray()[Obsolete]
+
 ## TODO
-#### load()
-#### getCurrentPage()
-#### loadDataByPageNumber()
+#### store.load()
+#### store.getCurrentPage()
+#### store.loadDataByPageNumber()
+#### store.setPrimaryKey(key)
+

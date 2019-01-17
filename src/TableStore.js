@@ -41,7 +41,7 @@ const SORT_MODE = {
 
 class TableStore {
   constructor (params = {}) {
-    this.primaryKey = 'id'
+    this.primaryKey = params.primaryKey
     this.storeType = params.storeType
     this.storeName = params.storeName
 
@@ -92,7 +92,7 @@ class TableStore {
   }
 
   initial (params) {
-    const defaultData = params.data || (this.data.length ? this.data : null)
+    const defaultData = params.data || (this.data.length ? this.data : [])
     this.setData(defaultData)
 
     // if no have fields, can't sorting and filter
@@ -123,10 +123,10 @@ class TableStore {
     // fieldFilters
     fieldFilters: this.initialFieldFilters || [],
     // filterText
-    filteringFields: this.initialFilteringFields || this.getDefaultFilteringFields(),
+    filteringFields: this.initialFilteringFields || TableStore.getDefaultFilteringFields(this.fields),
     filterText: this.initialFilterText || '',
     // sorting
-    sortKey: this.initialSortKey || this.getDefaultSortKey(),
+    sortKey: this.initialSortKey || this.primaryKey || TableStore.getDefaultSortKey(this.fields),
     sortDirection: this.initialSortDirection || SORT_MODE.ASC
   }) {
     if (this.isInitialed) return null
@@ -192,7 +192,14 @@ class TableStore {
   setFields (fields) {
     let fieldsResult = []
     if (fields instanceof Array) {
-      fieldsResult = this.setFieldsFromArray(fields)
+      const {
+        primaryKey,
+        fieldArray
+      } = TableStore.setFieldsFromArray(fields)
+      if (primaryKey) {
+        this.primaryKey = primaryKey
+      }
+      fieldsResult = fieldArray
       Log.info('setFields')
     } else {
       Log.error(`argument "fields" should be Array! but get ${typeof (fields)} type.`)
@@ -260,7 +267,7 @@ class TableStore {
      * set field from array
      * @param {String} fields
      */
-  setFieldsFromArray (fields) {
+  static setFieldsFromArray (fields) {
     if (!fields.length) {
       throw new Error('TableStore: "fields" is declaration!')
     }
@@ -289,8 +296,10 @@ class TableStore {
       return result
     })
 
-    this.primaryKey = primaryKey
-    return fieldArray
+    return {
+      primaryKey,
+      fieldArray
+    }
   }
 
   /**
@@ -486,18 +495,22 @@ class TableStore {
     Log.info('reset change state!')
   }
 
-  getDefaultFilteringFields () {
-    return this.fields.length ? this.getAllSortKeyByFields(this.fields) : []
+  static getDefaultFilteringFields (fields) {
+    return fields.length ? TableStore.getAllSortKeyByFields(fields) : []
   }
 
-  getAllSortKeyByFields (fields) {
+  static getDefaultSortKey (fields) {
+    return fields.length ? fields[0].id : 'id'
+  }
+
+  static getAllSortKeyByFields (fields) {
     return fields.reduce((keys, item) => {
       return keys.concat(item.id)
     }, [])
   }
 
-  getDefaultSortKey () {
-    return this.primaryKey || this.fields[0].id
+  getAllSortKey () {
+    return TableStore.getAllSortKeyByFields(this.fields)
   }
 
   static getDefaultComparator (type) {
