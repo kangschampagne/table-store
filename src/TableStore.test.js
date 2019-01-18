@@ -38,6 +38,31 @@ const mockDataSortDESCById = [mockDataKevin, mockDataConner, mockDataNiki]
 
 const mockDataSortKeyList = [mockFields[0].id, mockFields[1].id, mockFields[2].id]
 
+test('none store opts', () => {
+  const tableStore = new TableStore()
+  expect(tableStore.getResult()).toEqual([])
+})
+
+test('initial: data', () => {
+  const userGroup = new TableStore()
+  userGroup.data = mockData
+  userGroup.initial()
+  expect(userGroup.getResult()).toEqual(mockData)
+})
+
+test('initial: fields', () => {
+  const userGroup = new TableStore()
+  userGroup.fields = mockFields
+  userGroup.initial()
+  expect(userGroup.getFields().length).toEqual(mockFields.length)
+})
+
+test('setDefault', () => {
+  const userGroup = new UserStore()
+  userGroup.setDefault()
+  expect(userGroup.getResult()).toEqual([])
+})
+
 test('param: data', () => {
   let userGroup = new UserStore({
     data: mockData

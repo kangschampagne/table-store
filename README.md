@@ -297,12 +297,14 @@ const userGroup = new TableStore({
 ### Other API
 #### store.reloadStore()
 #### store.isValidSortKey(sortKey)
-#### store.updateStore()[Obsolete]
-#### store.updateByData()[Obsolete]
-#### store.updateByFields()[Obsolete]
-#### store.updateByFieldFilters()[Obsolete]
-#### store.updateByFilterText()[Obsolete]
-#### store.updateBySorting()[Obsolete]
+
+#### store.updateStore(type,value)[Obsolete]
+#### store.updateByData(data)[Obsolete]
+#### store.updateByFields(fields)[Obsolete]
+#### store.updateByFieldFilters(fields)[Obsolete]
+#### store.updateByFilterText(searchText)[Obsolete]
+#### store.updateBySorting(sorting)[Obsolete]
+
 #### store.doFieldFilters(listData)[Obsolete]
 #### store.doFilterText(listData)[Obsolete]
 #### store.doSorting(listData)[Obsolete]

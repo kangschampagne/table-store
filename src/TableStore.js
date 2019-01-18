@@ -91,7 +91,7 @@ class TableStore {
     this.data = data
   }
 
-  initial (params) {
+  initial (params = {}) {
     const defaultData = params.data || (this.data.length ? this.data : [])
     this.setData(defaultData)
 
@@ -391,10 +391,10 @@ class TableStore {
     } = this
 
     Log.info(`
-            isFieldsFiltersChanged: ${isFieldsFiltersChanged} ,
-            isFilterTextChanged: ${isFilterTextChanged},
-            isSortingChanged: ${isSortingChanged}
-        `)
+        isFieldsFiltersChanged: ${isFieldsFiltersChanged} ,
+        isFilterTextChanged: ${isFilterTextChanged},
+        isSortingChanged: ${isSortingChanged}
+    `)
 
     let resultData = this.data
 
@@ -410,7 +410,6 @@ class TableStore {
       // doFilterText
       // doSorting
       resultData = this.doFilterText(resultData)
-      // resultData = this.doSorting(resultData);
     }
 
     if (isSortingChanged && !!resultData.length) {
@@ -495,6 +494,14 @@ class TableStore {
     Log.info('reset change state!')
   }
 
+  getAllSortKey () {
+    return TableStore.getAllSortKeyByFields(this.fields)
+  }
+
+  isValidSortKey (sortKey) {
+    return !!this.getFieldByKey(sortKey)
+  }
+
   static getDefaultFilteringFields (fields) {
     return fields.length ? TableStore.getAllSortKeyByFields(fields) : []
   }
@@ -507,10 +514,6 @@ class TableStore {
     return fields.reduce((keys, item) => {
       return keys.concat(item.id)
     }, [])
-  }
-
-  getAllSortKey () {
-    return TableStore.getAllSortKeyByFields(this.fields)
   }
 
   static getDefaultComparator (type) {
@@ -529,10 +532,6 @@ class TableStore {
       default:
         return (a, b) => a - b
     }
-  }
-
-  isValidSortKey (sortKey) {
-    return !!this.getFieldByKey(sortKey)
   }
 }
 
