@@ -9,6 +9,8 @@ import {
 class UserStore extends TableStore {
   constructor (params = {}) {
     super({
+      primaryKey: params.primaryKey,
+
       storeName: params.storeName || 'UserGroup',
 
       fields: params.fields,
@@ -33,6 +35,33 @@ const mockDataNiki = mockData[0]
 const mockDataSortASCById = [mockDataNiki, mockDataConner, mockDataKevin]
 const mockDataSortASCByName = [mockDataConner, mockDataKevin, mockDataNiki]
 const mockDataSortDESCById = [mockDataKevin, mockDataConner, mockDataNiki]
+
+const mockDataSortKeyList = [mockFields[0].id, mockFields[1].id, mockFields[2].id]
+
+test('none store opts', () => {
+  const tableStore = new TableStore()
+  expect(tableStore.getResult()).toEqual([])
+})
+
+test('initial: data', () => {
+  const userGroup = new TableStore()
+  userGroup.data = mockData
+  userGroup.initial()
+  expect(userGroup.getResult()).toEqual(mockData)
+})
+
+test('initial: fields', () => {
+  const userGroup = new TableStore()
+  userGroup.fields = mockFields
+  userGroup.initial()
+  expect(userGroup.getFields().length).toEqual(mockFields.length)
+})
+
+test('setDefault', () => {
+  const userGroup = new UserStore()
+  userGroup.setDefault()
+  expect(userGroup.getResult()).toEqual([])
+})
 
 test('param: data', () => {
   let userGroup = new UserStore({
@@ -65,6 +94,17 @@ test('setFunc: set resultData', () => {
 
   userGroup.resultData = []
   expect(userGroup.getResult()).toEqual([])
+})
+
+test('param: primaryKey', () => {
+  const _mockFields = mockFields
+  _mockFields[0].isPrimaryKey = false
+  const userGroup = new UserStore({
+    data: mockData,
+    fields: _mockFields,
+    primaryKey: 'name'
+  })
+  expect(userGroup.getResult()).toEqual(mockDataSortASCByName)
 })
 
 test('param: initialFieldFilters', () => {
@@ -265,4 +305,11 @@ test('field filter', () => {
     }
   ])
   expect(userGroup.getResult()).toEqual([mockDataKevin])
+})
+
+test('GetFunc: getAllSortKey()', () => {
+  const userGroup = new UserStore({
+    fields: mockFields
+  })
+  expect(userGroup.getAllSortKey()).toEqual(mockDataSortKeyList)
 })

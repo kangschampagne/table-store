@@ -173,8 +173,8 @@ const userGroup = new TableStore({
 
 #### primaryKey  
 - type: `String`  
-- defaultValue: `id`  
-- description: Set primary key to sorting when store initiated.  
+- defaultValue: `''` or `fields[0].id` or `id`  
+- description: Set primary key to sorting when store initiated. Suggess use 'initialSortKey' to replace it.  
   
 
 #### initialFieldFilters  
@@ -286,8 +286,7 @@ const userGroup = new TableStore({
 #### store.getFields()
 #### store.getFieldByKey(sortKey)
 #### store.getDefaultSortKey()
-#### store.getAllSortKeyByFields(fields)
-#### store.getDefaultFilteringFields()[Obsolete]
+#### store.getAllSortKey()
 
 ### Action API
 #### store.setFieldFilters(filters)
@@ -298,19 +297,27 @@ const userGroup = new TableStore({
 ### Other API
 #### store.reloadStore()
 #### store.isValidSortKey(sortKey)
-#### store.setFieldsFromArray()[Obsolete]
-#### store.updateStore()[Obsolete]
-#### store.updateByData()[Obsolete]
-#### store.updateByFields()[Obsolete]
-#### store.updateByFieldFilters()[Obsolete]
-#### store.updateByFilterText()[Obsolete]
-#### store.updateBySorting()[Obsolete]
+
+#### store.updateStore(type,value)[Obsolete]
+#### store.updateByData(data)[Obsolete]
+#### store.updateByFields(fields)[Obsolete]
+#### store.updateByFieldFilters(fields)[Obsolete]
+#### store.updateByFilterText(searchText)[Obsolete]
+#### store.updateBySorting(sorting)[Obsolete]
+
 #### store.doFieldFilters(listData)[Obsolete]
 #### store.doFilterText(listData)[Obsolete]
 #### store.doSorting(listData)[Obsolete]
 #### store.resetChangeState()[Obsolete]
 
+### Obsoleted API
+#### store.getAllSortKeyByFields(fields)[Obsolete]
+#### store.getDefaultFilteringFields()[Obsolete]
+#### store.setFieldsFromArray()[Obsolete]
+
 ## TODO
-#### load()
-#### getCurrentPage()
-#### loadDataByPageNumber()
+#### store.load()
+#### store.getCurrentPage()
+#### store.loadDataByPageNumber()
+#### store.setPrimaryKey(key)
+
